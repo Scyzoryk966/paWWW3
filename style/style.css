@@ -1,0 +1,46 @@
+body {
+    color: black;
+    font-family: Tahoma, serif;
+    font-size:calc(12px + 0.3vw);
+    background: linear-gradient(to bottom right, #376db6, #0b2c63) no-repeat center center fixed;
+-moz-linear-gradient(to bottom right, #fff051, #a88f0f) no-repeat center center fixed;
+-webkit-linear-gradient(to bottom right, #fff051, #a88f0f) no-repeat center center fixed;
+    background-size: cover;
+}
+
+.container{
+    overflow: hidden;
+    max-width: 1900px;
+}
+
+[class*="col-"] {
+    background-clip: padding-box;
+    border: 5px solid transparent;
+    overflow: hidden;
+}
+
+.sticky-top{
+    top: 20px;
+}
+
+.navbar{
+    font-family: Tahoma, serif;
+    font-weight: 500;
+    top:15px;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 0.55rem;
+    margin: 0 0 1% 0;
+}
+.navbar-brand {
+    padding: 15px;
+}
+.navbar-brand img {
+    height: 5rem;
+}
+
+li.nav-item {
+    font-size: 1.5em;
+    line-height: 1.2em;
+    text-shadow: 1px 1px 5px black;
+}
+

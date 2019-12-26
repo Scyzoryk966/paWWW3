@@ -1,0 +1,22 @@
+<svg width="730" height="300" xmlns="http://www.w3.org/2000/svg">
+ <style>.st0{fill:#d4b830}.st1,.st2{opacity:.986;fill:#ebebeb;fill-opacity:0;enable-background:new}.st2{fill-opacity:.9216}.st3{fill:#fdd83c}</style>
+ <defs>
+  <filter height="200%" width="200%" y="-50%" x="-50%" id="svg_1_blur">
+   <feGaussianBlur stdDeviation="2.4"/>
+  </filter>
+  <filter id="svg_5_blur" x="-50%" y="-50%" width="200%" height="200%">
+   <feGaussianBlur stdDeviation="3.2"/>
+  </filter>
+ </defs>
+ <g>
+  <title>background</title>
+  <rect fill="none" id="canvas_background" height="272" width="712" y="-1" x="-1"/>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <text style="cursor: move;" fill="#ffffff" stroke-width="0" x="237.569502" y="103.15001" id="svg_5" font-size="24" font-family="'Palatino Linotype', 'Book Antiqua', Palatino, serif" text-anchor="start" xml:space="preserve" transform="matrix(4.567915369177244,0,0,3.880995589548486,-729.2048852309395,-167.65847057916022) " filter="url(#svg_5_blur)" stroke="#000">projekt</text>
+  <text fill="#000000" stroke-width="0" x="234.640428" y="101.672507" id="svg_4" font-size="24" font-family="'Palatino Linotype', 'Book Antiqua', Palatino, serif" text-anchor="start" xml:space="preserve" transform="matrix(4.567915369177244,0,0,3.880995589548486,-729.2048852309395,-167.65847057916022) " stroke="#000">projekt</text>
+  <text font-weight="bold" transform="matrix(6.94334705077214,0,0,6.956189937737756,-1195.4298241599818,-633.8673235197768) " xml:space="preserve" text-anchor="start" font-family="'Palatino Linotype', 'Book Antiqua', Palatino, serif" font-size="25" id="svg_1" y="118.998051" x="173.669622" stroke-width="0" fill="#1A333F" filter="url(#svg_1_blur)" stroke="#000">Canvas</text>
+  <text font-weight="bold" transform="matrix(6.94334705077214,0,0,6.956189937737756,-1195.4298241599818,-633.8673235197768) " xml:space="preserve" text-anchor="start" font-family="'Palatino Linotype', 'Book Antiqua', Palatino, serif" font-size="24" id="svg_2" y="117.411443" x="173.986136" stroke-width="0" fill="#ffffff" stroke="#000">Canvas</text>
+ </g>
+</svg>

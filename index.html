@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="pl-PL">
+<head>
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+			  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+			  crossorigin="anonymous">
+
+
+		<!-- Rest StyleSheets-->
+		<link rel="stylesheet" href="style/style.css" type="text/css" />
+
+		<title>Projekt 3 - canvas</title>
+</head>
+<body>
+
+<section class="container-fluid rounded ">
+		<nav class="col-md-12 navbar navbar-expand-lg navbar-dark sticky-top">
+				<a class="navbar-brand" href="#">
+						<img class="img-fluid" alt="logo strony" title="CanvasProjekt" src="img/logo.svg">
+				</a>
+				<ul class="navbar-nav mr-auto">
+						<li class="nav-item  active">
+								<a class="nav-link" href="#">thing #1</a>
+						</li>
+						<li class="nav-item">
+								<a class="nav-link" href="#">thing #2</a>
+						</li>
+						<li class="nav-item">
+								<a class="nav-link" href="#">thing #3</a>
+						</li>
+				</ul>
+<!--				<section class="btn-group" style="margin-right: 30px; margin-left: 30px;">-->
+<!--						<button id="losuj" type="button"-->
+<!--								class="btn btn-light my-2 my-sm-0 btn-lg">-->
+<!--								Losuj styl</button>-->
+<!--						<button type="button"-->
+<!--								class="btn btn-light my-2 my-sm-0 dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+<!--								<span class="sr-only">Rozwiń listę</span>-->
+<!--						</button>-->
+<!--						<section id="csschanger" class="dropdown-menu">-->
+<!--								<a id="default" class="dropdown-item" data-theme="css/default.css"-->
+<!--								   href="#">Żółty</a>-->
+<!--								<section class="dropdown-divider"></section>-->
+<!--								<a id="gray" class="dropdown-item" data-theme="css/gray.css"-->
+<!--								   href="#">Szary</a>-->
+<!--								<section class="dropdown-divider"></section>-->
+<!--								<a id="green" class="dropdown-item" data-theme="css/green.css"-->
+<!--								   href="#">Zielony</a>-->
+<!--								<section class="dropdown-divider"></section>-->
+<!--								<a id="blue" class="dropdown-item" data-theme="css/blue.css"-->
+<!--								   href="#">Niebieski</a>-->
+<!--						</section>-->
+<!--				</section>-->
+		</nav>
+		<section class="container">
+				<section class="row">
+						<section class="col-md-7 offset-md-1">
+								<article class="bg-light p-2 p-sm-5 rounded shadow-sm">
+												<h1>Edytor filtrów:</h1>
+										<article id="uploadhide">
+												<div class="input-group mb-3">
+														<div class="custom-file">
+																<input type="file" class="custom-file-input" id="imageLoader" name="imageLoader">
+																<label class="custom-file-label" for="imageLoader">Wybierz plik do edycji:</label>
+														</div>
+												</div>
+										</article>
+										<div id="afterUpload" style="display: none;">
+										<canvas class="img-fluid" id="imageCanvas" height="1080px"></canvas>
+												<br>
+												<button class="btn btn-secondary" onclick="downloadCanvas()">Pobierz obraz</button>
+												<button class="btn btn-danger" onclick="cancel()">Anuluj</button>
+										</div>
+								</article>
+						</section>
+						<section class="col-md-3">
+								<article class="bg-light p-2 p-sm-5 rounded shadow-sm">
+
+								</article>
+						</section>
+				</section>
+				<section class="row">
+						<footer class="col-md-10 mr-auto ml-auto">
+								<article class="page-footer bg-light rounded shadow-sm">
+										<section class="footer-copyright text-center py-1">
+												© 2020 Copyright Damian Szefler
+										</section>
+								</article>
+						</footer>
+				</section>
+		</section>
+</section>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+				integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+				crossorigin="anonymous"></script>
+		<script src="js/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+				integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+				crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+				integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+				crossorigin="anonymous"></script>
+		<script>
+            var imageLoader = document.getElementById('imageLoader');
+            imageLoader.addEventListener('change', handleImage, false);
+            var canvas = document.getElementById('imageCanvas');
+            var ctx = canvas.getContext('2d');
+
+            function handleImage(e){
+                var reader = new FileReader();
+                reader.onload = function(event){
+                    var img = new Image();
+                    img.onload = function(){
+                        canvas.width = img.width;
+                        canvas.height = img.height;
+                        ctx.drawImage(img,0,0);
+                    }
+                    img.src = event.target.result;
+                    $('#uploadhide').hide(1000);
+                    $('#afterUpload').show(1000);
+                }
+                reader.readAsDataURL(e.target.files[0]);
+            }
+            function downloadCanvas(){      // get canvas data
+                var canvas = document.getElementById( 'imageCanvas' );
+                var image = canvas.toDataURL();        //create temporary link
+                var tmpLink = document.createElement( 'a' );
+                tmpLink.download = 'image.png'; // set the name of the download file
+                tmpLink.href = image;        // temporarily add link to body and initiate the download
+                document.body.appendChild( tmpLink );
+                tmpLink.click();
+                document.body.removeChild( tmpLink );
+            }
+            function cancel(){
+                $('#uploadhide').show(1000);
+                $('#afterUpload').hide(1000);
+            }
+		</script>
+
+</body>
+</html>
