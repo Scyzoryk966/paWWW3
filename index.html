@@ -62,7 +62,7 @@
 						<section class="col-md-7 offset-md-1">
 								<article class="bg-light p-2 p-sm-5 rounded shadow-sm">
 												<h1>Edytor filtrów:</h1>
-										<article id="uploadhide">
+										<article class="uploadhide">
 												<div class="input-group mb-3">
 														<div class="custom-file">
 																<input type="file" class="custom-file-input" id="imageLoader" name="imageLoader">
@@ -70,7 +70,7 @@
 														</div>
 												</div>
 										</article>
-										<div id="afterUpload" style="display: none;">
+										<div class="afterUpload" style="display: none;">
 										<canvas class="img-fluid" id="imageCanvas" height="1080px"></canvas>
 												<br>
 												<button class="btn btn-secondary" onclick="downloadCanvas()">Pobierz
@@ -81,7 +81,8 @@
 						</section>
 						<section class="col-md-3">
 								<article class="bg-light p-2 p-sm-5 rounded shadow-sm">
-
+										<button class="btn btn-secondary afterUpload" onclick="narysuj()">Narysuj
+												gówno</button>
 								</article>
 						</section>
 				</section>
@@ -125,17 +126,25 @@
                         ctx.drawImage(img,0,0);
                     }
                     img.src = event.target.result;
-                    $('#uploadhide').hide(1000);
-                    $('#afterUpload').show(1000);
+                    $('.uploadhide').hide(1000);
+                    $('.afterUpload').show(1000);
                 }
                 reader.readAsDataURL(e.target.files[0]);
+            }
+
+           function narysuj() {  // rysuje kółeczko, trzeba wymyślić jak to anulować...
+                var c = document.getElementById("imageCanvas");
+                var ctx = c.getContext("2d");
+                ctx.beginPath();
+                ctx.arc(95, 50, 40, 0, 2 * Math.PI);
+                ctx.stroke();
             }
 
             function downloadCanvas(){      // get canvas data
                 var canvas = document.getElementById( 'imageCanvas' );
                 var image = canvas.toDataURL();        //create temporary link
                 var tmpLink = document.createElement( 'a' );
-                tmpLink.download = 'image.png'; // set the name of the download file
+                tmpLink.download = 'FiltrCanvas.png'; // set the name of the download file
                 tmpLink.href = image;        // temporarily add link to body and initiate the download
                 document.body.appendChild( tmpLink );
                 tmpLink.click();
@@ -143,8 +152,8 @@
             }
 
             function cancel(){
-                $('#uploadhide').show(1000);
-                $('#afterUpload').hide(1000);
+                $('.uploadhide').show(1000);
+                $('.afterUpload').hide(1000);
             }
 		</script>
 
