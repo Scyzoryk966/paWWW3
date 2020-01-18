@@ -85,13 +85,29 @@
 								</article>
 						</section>
 						<section class="col-md-3">
-								<article class="bg-light p-2 p-sm-5 rounded shadow-sm">
-										<button class="btn btn-secondary afterUpload" style="display: none;"
-												onclick="narysuj()">Narysuj
+								<article class="bg-light p-2 p-sm-5 m-1 rounded shadow-sm">
+										<h1>Dodaj inne rzeczy:</h1>
+										<button class="btn btn-secondary afterUpload m-1" style="display: none;"
+												onclick="grayScale()">Czarno-białe</button>
+										<button class="btn btn-secondary afterUpload m-1" style="display: none;"
+												onclick="brighten()">Rozjaśnij</button>
+										<button class="btn btn-secondary afterUpload m-1" style="display: none;"
+												onclick="darken()">Przyciemnij</button>
+								</article>
+
+								<article class="bg-light p-2 p-sm-5 m-1 rounded shadow-sm">
+										<h1>Dodaj tekst:</h1>
+										<input type="text" id="imgTxt" name="imgTxt">
+										<leabel for="imgTxt">Podaj tekst</leabel>
+										<button class="btn btn-secondary afterUpload m-1" style="display: none;"
+												onclick="text()">Narysuj
 												gówno</button>
-										<button class="btn btn-secondary afterUpload" style="display: none;"
+								</article>
+								<article class="bg-light p-2 p-sm-5 m-1 rounded shadow-sm">
+										<button class="btn btn-danger afterUpload m-1" style="display: none;"
 												onclick="resetOrg()">Resetuj zmiany</button>
 								</article>
+
 						</section>
 				</section>
 				<section class="row">
