@@ -13,6 +13,16 @@ body {
     max-width: 1900px;
 }
 
+.canvLayer{
+    position:relative;
+}
+
+.canvLayer canvas {
+    position:absolute;
+    left:0;
+    top:0;
+}
+
 [class*="col-"] {
     background-clip: padding-box;
     border: 5px solid transparent;

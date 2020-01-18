@@ -71,7 +71,10 @@
 												</div>
 										</article>
 										<div class="afterUpload" style="display: none;">
-										<canvas class="img-fluid" id="imageCanvas" height="1080px"></canvas>
+												<div class="canvLayer">
+														<canvas class="img-fluid" id="imageCanvas" height="1080px"></canvas>
+														<canvas class="img-fluid" id="imageDraw"></canvas>
+												</div>
 												<br>
 												<button class="btn btn-secondary" onclick="downloadCanvas()">Pobierz
 														obraz</button>
@@ -81,8 +84,11 @@
 						</section>
 						<section class="col-md-3">
 								<article class="bg-light p-2 p-sm-5 rounded shadow-sm">
-										<button class="btn btn-secondary afterUpload" onclick="narysuj()">Narysuj
+										<button class="btn btn-secondary afterUpload" style="display: none;"
+												onclick="narysuj()">Narysuj
 												gówno</button>
+										<button class="btn btn-secondary afterUpload" style="display: none;"
+												onclick="resetOrg()">Resetuj zmiany</button>
 								</article>
 						</section>
 				</section>
@@ -110,52 +116,7 @@
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
 				integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 				crossorigin="anonymous"></script>
-		<script>
-            var imageLoader = document.getElementById('imageLoader');
-            imageLoader.addEventListener('change', handleImage, false);
-            var canvas = document.getElementById('imageCanvas');
-            var ctx = canvas.getContext('2d');
-
-            function handleImage(e){
-                var reader = new FileReader();
-                reader.onload = function(event){
-                    var img = new Image();
-                    img.onload = function(){
-                        canvas.width = img.width;
-                        canvas.height = img.height;
-                        ctx.drawImage(img,0,0);
-                    }
-                    img.src = event.target.result;
-                    $('.uploadhide').hide(1000);
-                    $('.afterUpload').show(1000);
-                }
-                reader.readAsDataURL(e.target.files[0]);
-            }
-
-           function narysuj() {  // rysuje kółeczko, trzeba wymyślić jak to anulować...
-                var c = document.getElementById("imageCanvas");
-                var ctx = c.getContext("2d");
-                ctx.beginPath();
-                ctx.arc(95, 50, 40, 0, 2 * Math.PI);
-                ctx.stroke();
-            }
-
-            function downloadCanvas(){      // get canvas data
-                var canvas = document.getElementById( 'imageCanvas' );
-                var image = canvas.toDataURL();        //create temporary link
-                var tmpLink = document.createElement( 'a' );
-                tmpLink.download = 'FiltrCanvas.png'; // set the name of the download file
-                tmpLink.href = image;        // temporarily add link to body and initiate the download
-                document.body.appendChild( tmpLink );
-                tmpLink.click();
-                document.body.removeChild( tmpLink );
-            }
-
-            function cancel(){
-                $('.uploadhide').show(1000);
-                $('.afterUpload').hide(1000);
-            }
-		</script>
+		<script src="js/canvas.js"></script>
 
 </body>
 </html>
