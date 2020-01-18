@@ -18,7 +18,7 @@ function handleImage(e){
         };
         img.src = event.target.result;
         $('.uploadhide').hide(1000);
-        $('.canvLayer').css('height', canvas1.height);
+        $('canvas').css('height', '300');
         $('.afterUpload').show(1000);
     };
     reader.readAsDataURL(e.target.files[0]);
@@ -37,9 +37,17 @@ function resetOrg() {
     var ctx = c.getContext("2d");
     ctx.clearRect(0, 0, canvas2.width, canvas2.height);
 }
-
+function canvMerge(){
+    var c = document.getElementById('imageOutput');
+    var ctx = c.getContext('2d');
+    c.width = canvas1.width;
+    c.height = canvas1.height;
+    ctx.drawImage(canvas1, 0, 0);
+    ctx.drawImage(canvas2, 0, 0);
+}
 function downloadCanvas(){      // get canvas data
-    var canvas = document.getElementById( 'imageCanvas' );
+    canvMerge();
+    var canvas = document.getElementById( 'imageOutput' );
     var image = canvas.toDataURL();        //create temporary link
     var tmpLink = document.createElement( 'a' );
     tmpLink.download = 'FiltrCanvas.png'; // set the name of the download file
