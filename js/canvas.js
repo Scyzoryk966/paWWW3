@@ -3,9 +3,12 @@ imageLoader.addEventListener('change', handleImage, false);
 var canvas1 = document.getElementById('imageCanvas');
 var ctx1 = canvas1.getContext('2d');
 var canvas2 = document.getElementById('imageDraw');
-var src = ctx1.getImageData(0, 0, canvas1.width, canvas1.height);
-var copy = src.createImageData(canvas1.width, canvas1.height)
-copy.data.set(src.data);
+
+var src = ctx1.getImageData(0, 0, canvas1.width, canvas1.height); //zrobić z tego "reset filtrów"
+var copy = ctx1.createImageData(src.width, src.height);
+for(var i = 0; i < copy.data.length; i++){
+    copy.data[i] = src.data[i];
+}
 
 
 function handleImage(e){
@@ -18,6 +21,12 @@ function handleImage(e){
             canvas2.width = img.width;
             canvas2.height = img.height;
             ctx1.drawImage(img,0,0);
+            src = ctx1.getImageData(0, 0, canvas1.width, canvas1.height); // "reset" filtrów po pikselach
+            copy = ctx1.createImageData(src.width, src.height);
+            for(var i = 0; i < copy.data.length; i++){
+                copy.data[i] = src.data[i];
+            }
+
         };
         img.src = event.target.result;
         $('.uploadhide').hide(1000);
@@ -38,6 +47,7 @@ function grayScale() {
     }
     ctx1.putImageData(imgData, 0, 0);
 }
+
 
 function brighten() {
     var imgData = ctx1.getImageData(0, 0, canvas1.width, canvas1.height);
@@ -63,6 +73,10 @@ function darken() {
     ctx1.putImageData(imgData, 0, 0);
 }
 
+function resetBgnd() {
+    ctx1.putImageData(copy, 0, 0);
+}
+
 function text() {
     var c = document.getElementById("imageDraw");
     var ctx = c.getContext("2d");
@@ -70,7 +84,7 @@ function text() {
     ctx.fillText($('#imgTxt').val(), 10, 50);
 }
 
-function resetOrg() {
+function resetAdd() {
     var c = document.getElementById("imageDraw");
     var ctx = c.getContext("2d");
     ctx.clearRect(0, 0, canvas2.width, canvas2.height);
