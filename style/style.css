@@ -16,7 +16,9 @@ body {
 .canvLayer{
     position:relative;
 }
-
+.afterUpload{
+    display: none;
+}
 .canvLayer .layerTOP {
     height: 100%;
     position:absolute;

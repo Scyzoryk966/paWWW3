@@ -70,7 +70,7 @@
 														</div>
 												</div>
 										</article>
-										<div class="afterUpload" style="display: none;">
+										<div class="afterUpload">
 												<div class="canvLayer">
 														<canvas class="img-fluid" id="imageCanvas"
 																height="500px"></canvas>
@@ -84,34 +84,49 @@
 										</div>
 								</article>
 						</section>
-						<section class="col-md-3 afterUpload" style="display: none;">
-								<article class="bg-light p-2 p-sm-5 m-1 rounded shadow-sm">
+						<section class="col-md-3">
+								<article class="bg-light p-2 p-sm-3 m-1 rounded shadow-sm">
 										<h5>Jasność:</h5>
 										<input type="range" min="-200" max="200" value="0" step="2" class="custom-range"
 											   id="customRange1">
 										<h5>Kontrast:</h5>
 										<input type="range" min="-100" max="100" value="0" step="2" class="custom-range"
 											   id="customRange2">
+										<h5>Saturacja:</h5>
+										<input type="range" min="0" max="50" value="1" step="0.5" class="custom-range"
+											   id="customRange3">
 								</article>
-								<article class="bg-light p-2 p-sm-5 m-1 rounded shadow-sm">
+								<article class="bg-light p-2 p-sm-3 m-1 rounded shadow-sm">
 										<h5>Dodaj inne rzeczy:</h5>
-										<button class="btn btn-secondary afterUpload m-1" style="display: none;"
+										<button class="btn btn-secondary afterUpload m-1"
 												onclick="grayScale()">Czarno-białe</button>
-										<button class="btn btn-secondary afterUpload m-1" style="display: none;"
+										<button class="btn btn-secondary afterUpload m-1"
 												onclick="processSepia()">Sepia</button>
-										<button class="btn btn-danger afterUpload m-1" style="display: none;"
-												onclick="resetBright()">Zresetuj filtry</button>
+										<button class="btn btn-secondary afterUpload m-1"
+												onclick="border()">Ramka</button>
+										<button class="btn btn-danger afterUpload m-1"
+												onclick="resetSaturate()">Zresetuj filtry</button>
 								</article>
-								<article class="bg-light p-2 p-sm-5 m-1 rounded shadow-sm">
+								<article class="bg-light p-2 p-sm-3 m-1 rounded shadow-sm">
 										<h5>Dodaj tekst:</h5>
-										<input type="text" id="imgTxt" name="imgTxt">
-										<leabel for="imgTxt">Podaj tekst</leabel>
-										<button class="btn btn-secondary afterUpload m-1" style="display: none;"
+										<textarea id="imgTxt" name="imgTxt" class="md-textarea form-control" rows="2"></textarea>
+										<label for="imgTxt">Podaj tekst</label>
+										<br>
+										<label for="customRange4">Rozmiar</label>
+										<input type="range" min="9" max="100" value="1" step="1" class="custom-range"
+											   id="customRange4">
+										<label for="txtX">X:</label>
+										<input type="text" id="txtX" name="txtX" class="form-control" style="width:
+										7ch; display: inline-block">
+										<label for="txtX">Y:</label>
+										<input type="text" id="txtY" name="txtY" class="form-control" style="width:
+										7ch; display: inline-block">
+										<button class="btn btn-secondary afterUpload m-1"
 												onclick="text()">Napisz</button>
 								</article>
-								<article class="bg-light p-2 p-sm-5 m-1 rounded shadow-sm">
-										<button class="btn btn-danger afterUpload m-1" style="display: none;"
-												onclick="resetAdd()">Resetuj zmiany</button>
+								<article class="bg-light p-2 p-sm-3 m-1 rounded shadow-sm">
+										<button class="btn btn-danger afterUpload m-1"
+												onclick="resetBgnd(); resetAdd()">Resetuj zmiany</button>
 								</article>
 
 						</section>
