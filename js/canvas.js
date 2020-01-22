@@ -174,9 +174,53 @@ function text() {
     var c = document.getElementById("imageDraw");
     var ctx = c.getContext("2d");
     var rozmiar = document.getElementById("customRange4").value;
-    console.log(rozmiar);
+    var kolor = document.getElementById("txtcolor").value;
     ctx.font = "bold "+rozmiar+"px Arial";
+    ctx.fillStyle = kolor;
     ctx.fillText($('#imgTxt').val(), document.getElementById("txtX").value, document.getElementById("txtY").value);
+}
+
+function heartDraw(x, y) {
+    var c = document.getElementById("imageDraw");
+    var ctx = c.getContext("2d");
+    ctx.lineWidth = 2;
+
+    drawBezierCurve(x, y, x, y - 30, x - 50, y - 30, x - 50, y, "#C0392B");
+    drawBezierCurve(x - 50, y, x - 50, y + 30, x, y + 35, x, y + 60, "#C0392B");
+    drawBezierCurve(x, y + 60, x, y + 35, x + 50, y + 30, x + 50, y, "#C0392B");
+    drawBezierCurve(x + 50, y, x + 50, y - 30, x, y - 30, x, y, "#C0392B");
+
+
+    function drawBezierCurve(x0, y0, x1, y1, x2, y2, x3, y3, color) {
+        ctx.save();
+        ctx.beginPath();
+        ctx.moveTo(x0, y0);
+        ctx.bezierCurveTo(x1, y1, x2, y2, x3, y3);
+        ctx.strokeStyle = color;
+        ctx.stroke();
+        ctx.closePath();
+        ctx.restore();
+    }
+
+    function fillShape(fillStyle, strokeStyle) {
+        if (fillStyle) {
+            ctx.fillStyle = fillStyle;
+            ctx.fill();
+        }
+        if (strokeStyle) {
+            ctx.strokeStyle = strokeStyle;
+            ctx.stroke();
+        }
+    }
+
+}
+
+function heart() {
+    var ilosc = document.getElementById("customRange5").value;
+    for(var i = 0 ; i<ilosc; i++)
+    {
+        heartDraw(Math.floor(Math.random() * Math.max(canvas1.width, canvas1.height)), Math.floor(Math.random() * Math.max(canvas1.width, canvas1.height)));
+    }
 }
 
 function resetAdd() {

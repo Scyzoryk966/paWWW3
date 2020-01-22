@@ -25,38 +25,60 @@
 				</a>
 				<ul class="navbar-nav mr-auto">
 						<li class="nav-item  active">
-								<a class="nav-link" href="#">thing #1</a>
+								<a class="nav-link" href="#">Edytor obrazków</a>
 						</li>
 						<li class="nav-item">
-								<a class="nav-link" href="#">thing #2</a>
-						</li>
-						<li class="nav-item">
-								<a class="nav-link" href="#">thing #3</a>
+								<a class="nav-link" data-toggle="modal" data-target="#exampleModal" href="#">
+										Instrukcja</a>
 						</li>
 				</ul>
-<!--				<section class="btn-group" style="margin-right: 30px; margin-left: 30px;">-->
-<!--						<button id="losuj" type="button"-->
-<!--								class="btn btn-light my-2 my-sm-0 btn-lg">-->
-<!--								Losuj styl</button>-->
-<!--						<button type="button"-->
-<!--								class="btn btn-light my-2 my-sm-0 dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
-<!--								<span class="sr-only">Rozwiń listę</span>-->
-<!--						</button>-->
-<!--						<section id="csschanger" class="dropdown-menu">-->
-<!--								<a id="default" class="dropdown-item" data-theme="css/default.css"-->
-<!--								   href="#">Żółty</a>-->
-<!--								<section class="dropdown-divider"></section>-->
-<!--								<a id="gray" class="dropdown-item" data-theme="css/gray.css"-->
-<!--								   href="#">Szary</a>-->
-<!--								<section class="dropdown-divider"></section>-->
-<!--								<a id="green" class="dropdown-item" data-theme="css/green.css"-->
-<!--								   href="#">Zielony</a>-->
-<!--								<section class="dropdown-divider"></section>-->
-<!--								<a id="blue" class="dropdown-item" data-theme="css/blue.css"-->
-<!--								   href="#">Niebieski</a>-->
-<!--						</section>-->
-<!--				</section>-->
 		</nav>
+		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+						<div class="modal-content">
+								<div class="modal-header">
+										<h5 class="modal-title" id="exampleModalLabel">Instrukcja obsługi</h5>
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+										</button>
+								</div>
+								<div class="modal-body">
+										<ol>
+												<li>
+														Dodaj zdjęcie z dysku klikając przycisk "Browse"
+												</li>
+												<li>
+														Zmien kolejno jasność, kontrast, i saturacje. Zmiana w innej
+														kolejności zresetuje zmiany
+												</li>
+												<li>
+														Dodaj filtry, przycisk resetu zresetuje tylko filtry i
+														saturacje, wybrana jasność i kontrast pozostanie bez zmian.
+												</li>
+												<li>
+														Dodaj tekst, następnie dodatki.
+												</li>
+												<li>
+														Wszytskie kroki powyżej są opcionalne.
+												</li>
+												<li>
+														Aby zresetować zmiany kliknij 'Zresetuj zmiany"
+												</li>
+												<li>
+														Aby pobrać obraz, kliknij, "Pobierz obraz" pod wgranym zdjęciem
+												</li>
+												<li>
+														Aby zwgrać inny obraz, wybierz "Anuluj"
+												</li>
+										</ol>
+								</div>
+								<div class="modal-footer">
+										<button type="button" class="btn btn-secondary" data-dismiss="modal">ZamknijGi
+										</button>
+								</div>
+						</div>
+				</div>
+		</div>
 		<section class="container">
 				<section class="row">
 						<section class="col-md-7 offset-md-1">
@@ -85,7 +107,10 @@
 								</article>
 						</section>
 						<section class="col-md-3">
-								<article class="bg-light p-2 p-sm-3 m-1 rounded shadow-sm">
+								<article class="bg-light p-2 p-sm-3 m-1 rounded shadow-sm uploadhide">
+									<h4>Dodaj zdjecie aby kontynuować.</h4>
+								</article>
+								<article class="bg-light p-2 p-sm-3 m-1 rounded shadow-sm afterUpload">
 										<h5>Jasność:</h5>
 										<input type="range" min="-200" max="200" value="0" step="2" class="custom-range"
 											   id="customRange1">
@@ -93,39 +118,55 @@
 										<input type="range" min="-100" max="100" value="0" step="2" class="custom-range"
 											   id="customRange2">
 										<h5>Saturacja:</h5>
-										<input type="range" min="0" max="50" value="1" step="0.5" class="custom-range"
+										<input type="range" min="1" max="10" value="1" step="0.1" class="custom-range"
 											   id="customRange3">
 								</article>
-								<article class="bg-light p-2 p-sm-3 m-1 rounded shadow-sm">
+								<article class="bg-light p-2 p-sm-3 m-1 rounded shadow-sm afterUpload">
 										<h5>Dodaj inne rzeczy:</h5>
-										<button class="btn btn-secondary afterUpload m-1"
+										<button class="btn btn-secondary m-1"
 												onclick="grayScale()">Czarno-białe</button>
-										<button class="btn btn-secondary afterUpload m-1"
+										<button class="btn btn-secondary m-1"
 												onclick="processSepia()">Sepia</button>
-										<button class="btn btn-secondary afterUpload m-1"
+										<button class="btn btn-secondary m-1"
 												onclick="border()">Ramka</button>
-										<button class="btn btn-danger afterUpload m-1"
+										<button class="btn btn-danger m-1"
 												onclick="resetSaturate()">Zresetuj filtry</button>
 								</article>
-								<article class="bg-light p-2 p-sm-3 m-1 rounded shadow-sm">
+								<article class="bg-light p-2 p-sm-3 m-1 rounded shadow-sm afterUpload">
 										<h5>Dodaj tekst:</h5>
 										<textarea id="imgTxt" name="imgTxt" class="md-textarea form-control" rows="2"></textarea>
 										<label for="imgTxt">Podaj tekst</label>
 										<br>
 										<label for="customRange4">Rozmiar</label>
-										<input type="range" min="9" max="100" value="1" step="1" class="custom-range"
+										<input type="range" min="20" max="102" value="1" step="1" class="custom-range"
 											   id="customRange4">
 										<label for="txtX">X:</label>
-										<input type="text" id="txtX" name="txtX" class="form-control" style="width:
+										<input type="text" id="txtX" name="txtX" class="form-control"
+											   value="30" style="width:
 										7ch; display: inline-block">
 										<label for="txtX">Y:</label>
-										<input type="text" id="txtY" name="txtY" class="form-control" style="width:
+										<input type="text" id="txtY" name="txtY" class="form-control" value="30"
+											   style="width:
 										7ch; display: inline-block">
-										<button class="btn btn-secondary afterUpload m-1"
+										<input type="color" id="txtcolor" name="txtcolor"
+											   value="#000000">
+										<label for="txtcolor">Kolor</label>
+										<br>
+										<button class="btn btn-secondary m-1"
 												onclick="text()">Napisz</button>
+										<button class="btn btn-danger m-1"
+												onclick="resetAdd()">Usun tekst</button>
 								</article>
-								<article class="bg-light p-2 p-sm-3 m-1 rounded shadow-sm">
-										<button class="btn btn-danger afterUpload m-1"
+								<article class="bg-light p-2 p-sm-3 m-1 rounded shadow-sm afterUpload">
+										<h5>Dodaj efekty:</h5>
+										<button class="btn btn-secondary m-1"
+												onclick="heart()">Dodaj serduszka</button>
+										<label for="customRange5">Ilość</label>
+										<input type="range" min="1" max="100" value="10" step="1" class="custom-range"
+											   id="customRange5" name="customRange5">
+								</article>
+								<article class="bg-light p-2 p-sm-3 m-1 rounded shadow-sm afterUpload">
+										<button class="btn btn-danger m-1"
 												onclick="resetBgnd(); resetAdd()">Resetuj zmiany</button>
 								</article>
 
